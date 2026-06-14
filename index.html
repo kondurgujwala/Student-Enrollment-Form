@@ -16,16 +16,85 @@
     <script src="http://login2explore.com/jpdb/resources/js/0.0.3/jpdb-commons.js"></script>
 
     <script src="index.js"></script>
+
+    <style>
+        body{
+            background: linear-gradient(135deg,#e3f2fd,#f5f7fa);
+            font-family: 'Segoe UI', sans-serif;
+            min-height: 100vh;
+        }
+
+        .container{
+            max-width: 900px;
+        }
+
+        .card{
+            border: none;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .card-header{
+            background: linear-gradient(135deg,#007bff,#0056b3);
+            padding: 25px;
+        }
+
+        .card-body{
+            padding: 35px;
+        }
+
+        .form-group{
+            margin-bottom: 20px;
+        }
+
+        .form-group label{
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-control{
+            height: 50px;
+            border-radius: 12px;
+            border: 1px solid #ced4da;
+            font-size: 15px;
+        }
+
+        .form-control:focus{
+            border-color: #007bff;
+            box-shadow: 0 0 10px rgba(0,123,255,0.25);
+        }
+
+        textarea.form-control{
+            height: 100px !important;
+            padding-top: 10px;
+        }
+
+        .btn{
+            border-radius: 12px;
+            padding: 10px 28px;
+            font-weight: 600;
+            margin: 5px;
+        }
+
+        .footer-text{
+            text-align:center;
+            margin-top:20px;
+            color:#777;
+            font-size:14px;
+        }
+    </style>
+
 </head>
 
 <body>
 
-<div class="container mt-5">
+<div class="container mt-5 mb-5">
 
-    <div class="card shadow">
+    <div class="card shadow-lg">
 
-        <div class="card-header bg-primary text-white text-center">
-            <h3>Student Enrollment Form</h3>
+        <div class="card-header text-white text-center">
+            <h2>🎓 Student Enrollment Form</h2>
+            <p class="mb-0">JsonPowerDB Student Management System</p>
         </div>
 
         <div class="card-body">
@@ -33,7 +102,7 @@
             <form id="studentForm">
 
                 <div class="form-group">
-                    <label for="rollNo"><b>Roll No</b></label>
+                    <label for="rollNo">Roll No</label>
                     <input type="text"
                            class="form-control"
                            id="rollNo"
@@ -42,7 +111,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="fullName"><b>Full Name</b></label>
+                    <label for="fullName">Full Name</label>
                     <input type="text"
                            class="form-control"
                            id="fullName"
@@ -50,36 +119,76 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="studentClass"><b>Class</b></label>
-                    <input type="text"
+                    <label for="email">Email Address</label>
+                    <input type="email"
                            class="form-control"
-                           id="studentClass"
-                           placeholder="Enter Class">
+                           id="email"
+                           placeholder="Enter Email Address">
                 </div>
 
                 <div class="form-group">
-                    <label for="birthDate"><b>Birth Date</b></label>
+                    <label for="mobileNo">Mobile Number</label>
+                    <input type="tel"
+                           class="form-control"
+                           id="mobileNo"
+                           placeholder="Enter Mobile Number">
+                </div>
+
+                <div class="form-group">
+                    <label for="studentClass">Program / Year</label>
+
+                    <select class="form-control" id="studentClass">
+
+                        <option value="">Select Program</option>
+
+                        <optgroup label="Undergraduate">
+                            <option>B.Tech CE - Year 1</option>
+                            <option>B.Tech CE - Year 2</option>
+                            <option>B.Tech CE - Year 3</option>
+                            <option>B.Tech CE - Year 4</option>
+
+                            <option>B.Tech CSE - Year 1</option>
+                            <option>B.Tech CSE - Year 2</option>
+                            <option>B.Tech CSE - Year 3</option>
+                            <option>B.Tech CSE - Year 4</option>
+                        </optgroup>
+
+                        <optgroup label="Postgraduate">
+                            <option>M.Tech - Year 1</option>
+                            <option>M.Tech - Year 2</option>
+
+                            <option>MBA - Year 1</option>
+                            <option>MBA - Year 2</option>
+
+                            <option>MCA - Year 1</option>
+                            <option>MCA - Year 2</option>
+                        </optgroup>
+
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="birthDate">Birth Date</label>
                     <input type="date"
                            class="form-control"
                            id="birthDate">
                 </div>
 
                 <div class="form-group">
-                    <label for="address"><b>Address</b></label>
+                    <label for="address">Address</label>
                     <textarea class="form-control"
                               id="address"
-                              rows="3"
                               placeholder="Enter Address"></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="enrollmentDate"><b>Enrollment Date</b></label>
+                    <label for="enrollmentDate">Enrollment Date</label>
                     <input type="date"
                            class="form-control"
                            id="enrollmentDate">
                 </div>
 
-                <div class="text-center">
+                <div class="text-center mt-4">
 
                     <button type="button"
                             class="btn btn-success"
@@ -89,7 +198,7 @@
                     </button>
 
                     <button type="button"
-                            class="btn btn-warning"
+                            class="btn btn-warning text-white"
                             id="update"
                             onclick="updateStudent()">
                         Update
@@ -102,6 +211,10 @@
                         Reset
                     </button>
 
+                </div>
+
+                <div class="footer-text">
+                    Developed using HTML, JavaScript, Bootstrap & JsonPowerDB
                 </div>
 
             </form>
