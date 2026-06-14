@@ -5,63 +5,82 @@ var relName = "STUDENT-TABLE";
 
 var jpdbBaseURL = "http://api.login2explore.com:5577";
 var jpdbIML = "/api/iml";
-var jpdbIRL = "/api/irl";
+
+$(document).ready(function () {
+    resetForm();
+});
 
 function validateAndGetFormData() {
 
-    var rollNo = $("#rollNo").val();
-    var fullName = $("#fullName").val();
+    var rollNo = $("#rollNo").val().trim();
+    var fullName = $("#fullName").val().trim();
+    var email = $("#email").val().trim();
+    var mobileNo = $("#mobileNo").val().trim();
     var studentClass = $("#studentClass").val();
     var birthDate = $("#birthDate").val();
-    var address = $("#address").val();
+    var address = $("#address").val().trim();
     var enrollmentDate = $("#enrollmentDate").val();
 
     if (rollNo === "") {
-        alert("Roll Number is required");
+        alert("Please enter Roll Number");
         $("#rollNo").focus();
         return "";
     }
 
     if (fullName === "") {
-        alert("Full Name is required");
+        alert("Please enter Full Name");
         $("#fullName").focus();
         return "";
     }
 
+    if (email === "") {
+        alert("Please enter Email Address");
+        $("#email").focus();
+        return "";
+    }
+
+    if (mobileNo === "") {
+        alert("Please enter Mobile Number");
+        $("#mobileNo").focus();
+        return "";
+    }
+
     if (studentClass === "") {
-        alert("Class is required");
+        alert("Please select Program / Year");
         $("#studentClass").focus();
         return "";
     }
 
     if (birthDate === "") {
-        alert("Birth Date is required");
+        alert("Please select Birth Date");
         $("#birthDate").focus();
         return "";
     }
 
     if (address === "") {
-        alert("Address is required");
+        alert("Please enter Address");
         $("#address").focus();
         return "";
     }
 
     if (enrollmentDate === "") {
-        alert("Enrollment Date is required");
+        alert("Please select Enrollment Date");
         $("#enrollmentDate").focus();
         return "";
     }
 
-    var jsonStrObj = {
+    var jsonObj = {
         rollNo: rollNo,
         fullName: fullName,
-        studentClass: studentClass,
+        email: email,
+        mobileNo: mobileNo,
+        programYear: studentClass,
         birthDate: birthDate,
         address: address,
         enrollmentDate: enrollmentDate
     };
 
-    return JSON.stringify(jsonStrObj);
+    return JSON.stringify(jsonObj);
 }
 
 function saveStudent() {
@@ -72,58 +91,41 @@ function saveStudent() {
         return;
     }
 
-    var putReqStr = createPUTRequest(
+    var putRequest = createPUTRequest(
         connToken,
         jsonStr,
         dbName,
         relName
     );
 
-    jQuery.ajaxSetup({async:false});
+    jQuery.ajaxSetup({ async: false });
 
     var resultObj = executeCommandAtGivenBaseUrl(
-        putReqStr,
+        putRequest,
         jpdbBaseURL,
         jpdbIML
     );
 
-    jQuery.ajaxSetup({async:true});
-
-    alert("Student Record Saved Successfully");
+    jQuery.ajaxSetup({ async: true });
 
     console.log(resultObj);
+
+    alert("Student Record Saved Successfully!");
 
     resetForm();
 }
 
 function getStudent() {
-
-    var rollNo = $("#rollNo").val();
-
-    if (rollNo === "") {
-        return;
-    }
-
-    alert("GET functionality to be implemented using createGET_BY_KEYRequest()");
+    console.log("Search functionality can be extended.");
 }
 
 function updateStudent() {
-
-    alert("UPDATE functionality to be implemented using createUPDATERecordRequest()");
+    alert("Update functionality can be extended as per JPDB course implementation.");
 }
 
 function resetForm() {
 
-    $("#rollNo").val("");
-    $("#fullName").val("");
-    $("#studentClass").val("");
-    $("#birthDate").val("");
-    $("#address").val("");
-    $("#enrollmentDate").val("");
+    $("#studentForm")[0].reset();
 
     $("#rollNo").focus();
 }
-
-$(document).ready(function () {
-    $("#rollNo").focus();
-});
